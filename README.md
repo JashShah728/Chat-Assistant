@@ -13,7 +13,7 @@ A Python-based chat assistant that interacts with an SQLite database to answer u
 1. Clone the repository: git clone https://github.com/your-username/sqlite-chat-assistant.git
 2. Install dependencies: pip install.
 3. Run the Flask app: python app.py.
-4. Open your browser and navigate to `http://127.0.0.1:500
+4. Open your browser and navigate to http://127.0.0.1:500
 
 
 ## Features
