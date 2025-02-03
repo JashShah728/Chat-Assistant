@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJACKUS Chat Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { color: #333; }
+        textarea, button { width: 100%; padding: 10px; margin: 10px 0; }
+        button { background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #response { background-color: white; padding: 15px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>AJACKUS Chat Assistant For SQLite</h1>
+    <textarea id="query" placeholder="Type your query here..." rows="4"></textarea>
+    <button onclick="sendQuery()">Submit Query</button>
+    <div id="response"></div>
+
+    <script>
+        function sendQuery() {
+            const query = document.getElementById('query').value;
+            fetch('/query', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerHTML = 
+                    typeof data.response === 'string' 
+                    ? data.response 
+                    : JSON.stringify(data.response, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('response').innerHTML = 'Error: ' + error;
+            });
+        }
+    </script>
+</body>
+</html>
